@@ -25,6 +25,13 @@
             </div>
             <p class="hint">Klik sisi untuk memilihnya sebagai sisi pohon. Arahkan kursor ke sisi pohon untuk melihat potongan yang diinduksinya.</p>
             <svg id="g" viewBox="0 0 400 300" role="img" aria-label="Graf interaktif"></svg>
+            <div class="input">
+                <label for="edges">Masukkan graf sendiri</label>
+                <textarea id="edges" rows="3" placeholder="A-B, B-C, C-D, D-A, A-C"></textarea>
+                <p class="sub">Tulis satu sisi per pasangan simpul, dipisah koma atau baris baru. Maksimal 12 simpul dan 18 sisi.</p>
+                <div class="actions"><button id="apply">Tambahkan graf ini</button></div>
+                <p id="err" class="err" role="alert"></p>
+            </div>
         </section>
         <aside>
             <div class="metrics">
@@ -40,7 +47,8 @@
             <p class="legend"><i class="a"></i>Shore A <i class="b"></i>Shore B <i class="c"></i>Sisi potongan</p>
         </aside>
     </main>
-    <footer>Kongesti sisi e di pohon T adalah jumlah sisi graf pada potongan yang diinduksi e. Referensi: Atalig dkk., arXiv:2601.10881, Bagian 2.</footer>
+    <footer>© 2026 Copyright YuHaRa. All Rights Reserved. Referensi: Atalig dkk., arXiv:2601.10881.</footer>
     <script src="app.js"></script>
 </body>
+
 </html>

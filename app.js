@@ -30,7 +30,7 @@ function grid(r, c) {
 }
 
 const GRAPHS = {
-    'Contoh 6 simpul': {
+    '6 simpul': {
         V: [
             [70, 60],
             [200, 35],
@@ -51,9 +51,9 @@ const GRAPHS = {
             [1, 5]
         ]
     },
-    'Klik K4': complete(4),
-    'Klik K5': complete(5),
-    'Klik K6': complete(6),
+    'K4': complete(4),
+    'K5': complete(5),
+    'K6': complete(6),
     'Grid 3x3': grid(3, 3)
 };
 
@@ -129,6 +129,46 @@ function solve(g) {
     };
 }
 
+function parseGraph(text) {
+    const toks = text.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
+    if (!toks.length) throw new Error('Tulis minimal satu sisi, misalnya A-B.');
+    const idx = new Map(),
+        names = [],
+        E = [],
+        seen = new Set();
+    for (const t of toks) {
+        const p = t.split(/[\s\-\u2013]+/).filter(Boolean);
+        if (p.length !== 2) throw new Error(`Sisi "${t}" tidak dikenali. Tulis dua simpul, misalnya A-B.`);
+        if (p.some(x => x.length > 3)) throw new Error('Nama simpul maksimal 3 karakter.');
+        if (p[0] === p[1]) throw new Error(`Sisi "${t}" menghubungkan simpul ke dirinya sendiri.`);
+        const ids = p.map(x => {
+            if (!idx.has(x)) {
+                idx.set(x, names.length);
+                names.push(x)
+            }
+            return idx.get(x)
+        });
+        const key = ids.slice().sort((x, y) => x - y).join('-');
+        if (seen.has(key)) continue;
+        seen.add(key);
+        E.push(ids);
+    }
+    if (names.length > 12) throw new Error('Maksimal 12 simpul.');
+    if (E.length > 18) throw new Error('Maksimal 18 sisi agar pencarian optimal tetap cepat.');
+    const n = names.length;
+    const V = names.map((_, i) => {
+        const a = 2 * Math.PI * i / n - Math.PI / 2;
+        return [200 + 110 * Math.cos(a), 150 + 110 * Math.sin(a)]
+    });
+    const g = {
+        V,
+        E,
+        names
+    };
+    if (reach(g, E.map((_, i) => i), 0, -1).size !== n) throw new Error('Graf harus terhubung agar punya pohon rentang.');
+    return g;
+}
+
 const $ = id => document.getElementById(id);
 const svg = $('g');
 let g, tree, hov, opt;
@@ -166,7 +206,7 @@ function render() {
     g.V.forEach(([x, y], i) => {
         const col = cut ? (cut.S.has(i) ? 'var(--tree)' : 'var(--b)') : 'var(--sub)';
         h += `<circle cx="${x}" cy="${y}" r="15" fill="var(--paper)" stroke="${col}" stroke-width="2"/>`;
-        h += `<text x="${x}" y="${y+4}" text-anchor="middle" font-size="13" font-weight="600" fill="${col}">${String.fromCharCode(65+i)}</text>`;
+        h += `<text x="${x}" y="${y+4}" text-anchor="middle" font-size="13" font-weight="600" fill="${col}">${(g.names?g.names[i]:String.fromCharCode(65+i))}</text>`;
     });
     svg.innerHTML = h;
     const cur = full() ? maxCong(g, tree) : null;
@@ -213,5 +253,20 @@ $('solve').onclick = () => {
 };
 $('reset').onclick = () => load($('preset').value);
 $('preset').onchange = e => load(e.target.value);
+$('apply').onclick = () => {
+    try {
+        GRAPHS['Graf kustom'] = parseGraph($('edges').value);
+        if (![...$('preset').options].some(o => o.value === 'Graf kustom')) $('preset').add(new Option('Graf kustom', 'Graf kustom'));
+        $('preset').value = 'Graf kustom';
+        $('err').textContent = '';
+        load('Graf kustom');
+    }
+    catch (e) {
+        $('err').textContent = e.message
+    }
+};
+$('edges').oninput = () => {
+    $('err').textContent = ''
+};
 Object.keys(GRAPHS).forEach(n => $('preset').add(new Option(n, n)));
 load(Object.keys(GRAPHS)[0]);
