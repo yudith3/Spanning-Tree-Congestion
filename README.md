@@ -27,6 +27,8 @@ Diberikan graf G dan pohon rentang T. Kongesti sebuah sisi e di T adalah jumlah 
 | `index.html` | Kerangka halaman, termasuk kolom input graf |
 | `style.css` | Tampilan, termasuk mode gelap otomatis |
 | `app.js` | Data graf, pembaca input, logika graf, dan tampilan |
+| `graf.js` | Logika graf bersama (potongan, kongesti, solver) |
+| `modul2.html`, `reduksi.js` | Modul 2: reduksi (M2P1N)-SAT ke graf G* |
 
 Di dalam `app.js`:
 
@@ -64,6 +66,10 @@ Aturan input:
 
 Nilai stc(K_n) = n−1 sesuai fakta di paper, dan jumlah pohon rentang klik sesuai rumus Cayley (n^(n−2)).
 
-### Referensi
+## Modul 2: Reduksi SAT
+
+Menampilkan graf G* hasil reduksi dari instans (M2P1N)-SAT dengan 12 variabel dan 16 klausa. Pengguna memindahkan sisi klausa-variabel untuk membentuk pohon, lalu situs menghitung kongesti tiap sisi akar-variabel dan menurunkan penugasan variabel dari pohon (Lemma 3.3 dan 3.4 paper).
+
+## Referensi
 
 S. Atalig, M. Chrobak, C. Dürr, P. Kolman, H. Luu, J. Sgall, G. Zhu. *Two Complexity Results on Spanning-Tree Congestion Problems*. arXiv:2601.10881v2, 2026.
