@@ -263,3 +263,64 @@ textarea
     margin: 8px 0 0;
     min-height: 1.4em
 }
+
+:root
+{
+    --neg: #a15c00
+}
+
+@media(prefers-color-scheme:dark)
+{
+    :root
+    {
+        --neg: #f2c46d
+    }
+}
+
+main.wide
+{
+    grid-template-columns: 1fr
+}
+
+.chips
+{
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 10px 0
+}
+
+.chips span
+{
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: var(--bg)
+}
+
+.chips span.conf
+{
+    border: 1px solid var(--cut);
+    color: var(--cut)
+}
+
+.verdict
+{
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    margin-bottom: 10px;
+    font-size: 14px
+}
+
+.verdict.ok
+{
+    border-color: var(--b);
+    color: var(--b)
+}
+
+.verdict.bad
+{
+    border-color: var(--cut);
+    color: var(--cut)
+}
