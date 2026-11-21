@@ -38,7 +38,7 @@ Di dalam `app.js`:
 
 ### Menambah graf baru
 
-**Lewat website.** Isi kolom "Masukkan graf sendiri" dengan daftar sisi, lalu klik "Gunakan graf ini". Graf muncul di menu sebagai "Graf kustom".
+Isi kolom "Masukkan graf sendiri" dengan daftar sisi, lalu klik "Gunakan graf ini". Graf muncul di menu sebagai "Graf kustom".
 
 ```
 A-B, B-C, C-D, D-A, A-C
