@@ -1,7 +1,7 @@
 # Spanning-Tree-Congestion
 Project to visualize Graph Theory sub part, especially Spanning Tree problem
 
-## STC Explorer, Modul 1: Penjelajah
+## STC Explorer, Modul 1: Penjelajahan
 
 Visualisasi interaktif untuk memahami *spanning-tree congestion* (STC) pada graf kecil. Pengguna membentuk pohon rentang dengan mengklik sisi, lalu melihat kongesti tiap sisi pohon dan potongan (cut) yang diinduksinya.
 
