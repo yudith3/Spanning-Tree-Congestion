@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STC Explorer: Modul 3</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>STC Explorer</h1>
+        <nav>
+            <a href="index.html">Modul 1: Penjelajah</a>
+            <a href="modul2.html">Modul 2: Reduksi SAT</a>
+            <a class="on" href="modul3.html">Modul 3: Kaktus dan hub</a>
+        </nav>
+    </header>
+    <main class="wide">
+        <section class="stage">
+            <div class="bar">
+                <label for="gs">Graf</label>
+                <select id="gs"></select>
+                <span id="info" class="sub"></span>
+            </div>
+            <div class="split">
+                <svg id="m3" viewBox="0 0 400 300" role="img" aria-label="Graf dengan potongan dan hub yang disorot"></svg>
+                <div id="list"></div>
+            </div>
+            <div class="actions" style="margin-top:12px">
+                <button id="bp">Mundur</button>
+                <button id="bn">Maju</button>
+                <button id="ba">Tampilkan semua</button>
+            </div>
+            <div id="vd" class="verdict" aria-live="polite"></div>
+            <p id="xc" class="sub"></p>
+            <p class="legend">Biru: shore Z. Merah: sisi potongan. Cincin hijau: hub (putus-putus untuk out-hub).</p>
+            <p class="sub">Hanya menangani K ganjil, saat kaktus berupa pohon. Kasus K genap (siklus kaktus, Algoritma 2) belum ada. Potongan dicari dengan brute force, bukan algoritma Karger dan Panigrahi.</p>
+        </section>
+    </main>
+    <footer>© 2026 Copyright YuHaRa. All Rights Reserved. Referensi: Atalig dkk., arXiv:2601.10881.</footer>
+    <script src="graf.js"></script>
+    <script src="kaktus.js"></script>
+</body>
+
+</html>

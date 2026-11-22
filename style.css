@@ -309,7 +309,7 @@ main.wide
     padding: 10px 12px;
     border-radius: 8px;
     border: 1px solid var(--line);
-    margin-bottom: 10px;
+    margin: 10px 0;
     font-size: 14px
 }
 
@@ -323,4 +323,51 @@ main.wide
 {
     border-color: var(--cut);
     color: var(--cut)
+}
+
+.split
+{
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 14px;
+    margin-top: 10px
+}
+
+@media(max-width:720px)
+{
+    .split
+    {
+        grid-template-columns: 1fr
+    }
+}
+
+#list
+{
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+.step
+{
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    background: var(--bg);
+    border: 1px solid transparent
+}
+
+.step.cur
+{
+    border-color: var(--tree);
+    color: var(--tree)
+}
+
+button:disabled
+{
+    opacity: .4;
+    cursor: default
 }
